@@ -1,0 +1,2739 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J-Tech Industries - General Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6247AA', // Vibrant purple
+                        secondary: '#FF6542', // Bright orange-red
+                        accent: '#00C2BA', // Turquoise
+                        highlight: '#FDA349', // Amber/gold
+                        danger: '#FF3A20', // Intense red for warnings
+                        dark: {
+                            bg: '#030308', // Almost true black with minimal color tint
+                            surface: '#0A0A14', // Very dark near-black surface
+                            card: '#12121E', // Very dark card background
+                            text: '#E3BAFF' // Brighter purple text for higher contrast
+                        },
+                        light: {
+                            bg: '#161638', // Dark blue-purple for "light" mode
+                            surface: '#232342', // Slightly lighter purple surface
+                            card: '#2F2E54', // Purple card in light mode
+                            text: '#F1E9FF' // Pale purple text
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Orbitron', 'sans-serif'],
+                        'mono': ['Roboto Mono', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            },
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Orbitron:wght@400;500;700;900&amp;family=Roboto+Mono:wght@300;400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        /* Enhanced Warning Message Animations */
+        @keyframes textGlitch {
+            0% { transform: translate(0); opacity: 1; }
+            10% { transform: translate(-2px, 2px); opacity: 0.9; }
+            20% { transform: translate(2px, -2px); opacity: 1; }
+            30% { transform: translate(-2px, 0px); text-shadow: 0 0 4px #c70039; opacity: 0.8; }
+            40% { transform: translate(0px, 2px); text-shadow: 0 0 0px; opacity: 1; }
+            50% { transform: translate(0); opacity: 0.9; }
+            60% { transform: translate(1px, -1px); opacity: 1; }
+            70% { transform: translate(-1px, 1px); opacity: 0.6; }
+            80% { transform: translate(1px, 1px); text-shadow: 0 0 2px #900C3F; opacity: 1; }
+            90% { transform: translate(0px, -1px); opacity: 0.9; }
+            100% { transform: translate(0); opacity: 1; }
+        }
+        
+        @keyframes severeTextGlitch {
+            0% { transform: translate(0, 0) skew(0deg, 0deg); opacity: 1; }
+            10% { transform: translate(-4px, 2px) skew(2deg, 0deg); opacity: 0.9; text-shadow: 2px 0 #FF3A20; }
+            20% { transform: translate(4px, -3px) skew(-2deg, 1deg); opacity: 1; text-shadow: -2px 0 #00C2BA; }
+            30% { transform: translate(-2px, 0px) skew(0deg, -2deg); text-shadow: 0 0 8px #c70039; opacity: 0.8; }
+            40% { transform: translate(0px, 3px) skew(1deg, 0deg); text-shadow: 3px 0 #FDA349; opacity: 1; }
+            50% { transform: translate(0, -1px) skew(-1deg, 1deg); opacity: 0.9; text-shadow: 0 0 8px #6247AA; }
+            60% { transform: translate(3px, -2px) skew(0deg, -1deg); opacity: 1; text-shadow: -1px 0 #FF6542; }
+            70% { transform: translate(-3px, 2px) skew(2deg, 0deg); opacity: 0.6; text-shadow: 1px 0 #00C2BA; }
+            80% { transform: translate(2px, 1px) skew(-2deg, 2deg); text-shadow: 0 0 8px #900C3F; opacity: 1; }
+            90% { transform: translate(-2px, -2px) skew(1deg, -1deg); opacity: 0.9; text-shadow: 2px 0 #FF3A20; }
+            100% { transform: translate(0, 0) skew(0deg, 0deg); opacity: 1; }
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            8%, 12% { opacity: 0.4; }
+            10% { opacity: 0.8; }
+            20%, 80% { opacity: 1; }
+            50%, 52% { opacity: 0.3; }
+            51% { opacity: 0.6; }
+            60%, 65% { opacity: 1; }
+            70%, 72% { opacity: 0.5; }
+            71% { opacity: 0.7; }
+        }
+        
+        @keyframes blinking {
+            0%, 49% { opacity: 1; }
+            50%, 89% { opacity: 0; }
+            90%, 100% { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            0% { transform: translateY(-10px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        .glitch-text-subtle {
+            animation: textGlitch 6s ease infinite alternate;
+        }
+        
+        .glitch-text-severe {
+            animation: severeTextGlitch 1.5s linear infinite alternate;
+            text-shadow: 0 0 5px rgba(255, 101, 66, 0.8);
+        }
+        
+        .warning-text {
+            animation: flicker 15s infinite;
+        }
+        
+        .blinking-text {
+            animation: blinking 1.5s infinite;
+        }
+        
+        .error-message {
+            position: fixed;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            background-color: rgba(255, 58, 32, 0.15);
+            border: 1px solid rgba(255, 58, 32, 0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            color: #FF3A20;
+            z-index: 50;
+            box-shadow: 0 0 15px rgba(255, 58, 32, 0.2);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .error-message.type-1 {
+            animation: textGlitch 2s ease infinite alternate;
+        }
+        
+        .error-message.type-2 {
+            animation: severeTextGlitch 1.5s linear infinite alternate;
+            text-shadow: 0 0 5px rgba(255, 58, 32, 0.8);
+        }
+        
+        .error-message.type-3 {
+            animation: blinking 0.8s infinite;
+            text-shadow: 0 0 8px #FF3A20;
+        }
+        
+        .error-message.visible {
+            opacity: 1;
+        }
+        
+        #security-warning {
+            transition: opacity 0.5s ease;
+        }
+        
+        .redacted {
+            display: inline-block;
+            padding: 0 4px;
+            position: relative;
+            color: transparent;
+            border-radius: 2px;
+        }
+        
+        .countdown {
+            position: relative;
+        }
+        
+        .timestamp {
+            font-weight: 500;
+        }
+        
+        /* Base Animations */
+        @keyframes logoReveal {
+            0% { stroke-dashoffset: 1000; opacity: 0; }
+            60% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 1; }
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(63, 0, 113, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(97, 0, 148, 0.9)); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes glitchText {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        
+        @keyframes float-random {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(var(--rand-x1, 10px), var(--rand-y1, 10px)); }
+            50% { transform: translate(var(--rand-x2, -10px), var(--rand-y2, -15px)); }
+            75% { transform: translate(var(--rand-x3, -15px), var(--rand-y3, 5px)); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        @keyframes rotate-random {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(var(--rand-rotate, 360deg)); }
+        }
+        
+        /* Bacteria animation - now more organic */
+        @keyframes cell-multiply {
+            0% { transform: scale(0); opacity: 0; }
+            30% { transform: scale(0.7); opacity: 0.4; }
+            50% { transform: scale(1.15); opacity: 0.7; }
+            70% { transform: scale(0.95); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        
+        @keyframes cell-pulse {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.05) rotate(2deg); }
+            50% { transform: scale(0.95) rotate(-1deg); }
+            75% { transform: scale(1.02) rotate(1deg); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes cell-move {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(var(--move-x1, 3px), var(--move-y1, -2px)); }
+            50% { transform: translate(var(--move-x2, -2px), var(--move-y2, 4px)); }
+            75% { transform: translate(var(--move-x3, 1px), var(--move-y3, -1px)); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Logo Animation */
+        .logo-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: logoReveal 3s cubic-bezier(0.19, 1, 0.22, 1) forwards, 
+                       logoGlow 3s 3s ease-in-out infinite;
+        }
+
+        /* Logo particle effect */
+        .logo-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #FDA349; /* Amber/gold */
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Enhanced animations */
+        .fade-in { 
+            opacity: 0; 
+            animation: fadeIn 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+        }
+        
+        .fade-in-left { 
+            opacity: 0; 
+            animation: fadeInLeft 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+        }
+        
+        .fade-in-right { 
+            opacity: 0; 
+            animation: fadeInRight 1s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+        }
+
+        .delay-1 { animation-delay: 0.8s; }
+        .delay-2 { animation-delay: 1.3s; }
+        .delay-3 { animation-delay: 1.8s; }
+        .delay-4 { animation-delay: 2.3s; }
+
+        /* Futuristic UI elements */
+        .glitch-text:hover {
+            animation: glitchText 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            color: #7879F1;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                rgba(98, 71, 170, 0),
+                rgba(255, 101, 66, 0.4),
+                rgba(98, 71, 170, 0)
+            );
+            animation: scanline 5s linear infinite;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        /* Advanced gradient backgrounds - cosmic colors */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6247AA, #FF6542, #00C2BA, #FDA349);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        .radial-gradient {
+            background: radial-gradient(circle at center, rgba(98, 71, 170, 0.2), transparent 70%);
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Tech grid pattern - cosmic theme */
+        .grid-pattern {
+            background-size: var(--grid-size, 40px) var(--grid-size, 40px);
+            background-image: 
+                linear-gradient(to right, rgba(98, 71, 170, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(98, 71, 170, 0.07) 1px, transparent 1px);
+        }
+        
+        .dark .grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(255, 101, 66, 0.09) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 101, 66, 0.09) 1px, transparent 1px);
+        }
+
+        /* Dark/Light mode */
+        .light-mode {
+            background-color: theme('colors.light.bg');
+            color: theme('colors.light.text');
+        }
+
+        .dark-mode {
+            background-color: theme('colors.dark.bg');
+            color: theme('colors.dark.text');
+        }
+
+        .dark .logo-path {
+            stroke: #FDA349; /* Amber/gold stroke in dark mode */
+        }
+        
+        /* Background cosmic wheel animations */
+        @keyframes rotate-ccw {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        
+        @keyframes fadeInCosmicWheel {
+            from { opacity: 0; transform: scale(0.95) rotate(0deg); }
+            to { opacity: 0.25; transform: scale(1) rotate(-15deg); }
+        }
+        
+        .rotate-animation {
+            animation: rotate-ccw 300s linear infinite;
+            transform-origin: center center;
+        }
+
+        /* HUD-like elements */
+        .data-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(98, 71, 170, 0.3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .dark-mode .data-circle {
+            border: 2px solid rgba(255, 101, 66, 0.5);
+        }
+
+        .data-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #6247AA;
+            animation: rotate 2s linear infinite;
+        }
+        
+        .dark-mode .data-circle::before {
+            border-top-color: #FF6542;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced button styles */
+        .tech-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .tech-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.2) 50%, 
+                rgba(255, 255, 255, 0) 100%
+            );
+            transition: all 0.6s;
+        }
+
+        .tech-button:hover::before {
+            left: 100%;
+        }
+
+        .tech-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(93, 92, 222, 0.6);
+        }
+
+        /* Enhanced digital clock style */
+        #timer-container {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(44, 44, 84, 0.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(93, 92, 222, 0.3);
+            position: relative;
+            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+        }
+        
+        /* Enhanced timer styles for acceleration visual feedback */
+        #timer-container.accelerated-1 {
+            color: #7879F1;
+        }
+        
+        #timer-container.accelerated-2 {
+            color: #FF6542;
+            text-shadow: 0 0 5px rgba(255, 101, 66, 0.5);
+        }
+        
+        #timer-container.accelerated-3 {
+            color: #FDA349;
+            text-shadow: 0 0 8px rgba(253, 163, 73, 0.7);
+            animation: severeTextGlitch 0.8s linear infinite alternate;
+        }
+        
+        /* Timer digits that can be individually animated */
+        .timer-digit {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+        
+        .timer-digit.pulse {
+            animation: pulse 0.5s ease;
+        }
+        
+        .timer-separator {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .timer-separator.blink {
+            animation: blinking 0.5s infinite;
+        }
+
+        /* Particles canvas */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        /* Bacteria-like cell animation elements - enhanced */
+        .bacteria-cell {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: cell-multiply 1s forwards, cell-pulse 4s infinite alternate;
+        }
+        
+        /* Added movement to cells */
+        .bacteria-cell.moving {
+            animation: cell-multiply 1s forwards, cell-pulse 4s infinite alternate, cell-move 10s infinite ease-in-out;
+        }
+        
+        /* Make some cells irregular shapes */
+        .bacteria-cell.irregular {
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+        }
+        
+        /* Mini J-Tech Logos that appear during Slide 2 */
+        .mini-logo {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: cell-multiply 1s forwards, float-random 15s ease-in-out infinite;
+        }
+
+        /* Slide Content */
+        .slide {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease, height 0.5s ease;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        /* Enhanced slide transitions */
+        .slide.enter-fade-transform {
+            animation: slideEnterFadeTransform 0.8s forwards;
+        }
+
+        .slide.exit-fade-transform {
+            animation: slideExitFadeTransform 0.8s forwards;
+        }
+
+        .slide.enter-slide-left {
+            animation: slideEnterFromRight 0.8s forwards;
+        }
+
+        .slide.exit-slide-left {
+            animation: slideExitToLeft 0.8s forwards;
+        }
+
+        .slide.enter-slide-up {
+            animation: slideEnterFromBottom 0.8s forwards;
+        }
+
+        .slide.exit-slide-up {
+            animation: slideExitToTop 0.8s forwards;
+        }
+
+        .slide.enter-zoom-fade {
+            animation: slideEnterZoomFade 0.8s forwards;
+        }
+
+        .slide.exit-zoom-fade {
+            animation: slideExitZoomFade 0.8s forwards;
+        }
+
+        .slide.enter-glitch {
+            animation: slideEnterGlitch 0.8s forwards;
+        }
+
+        .slide.exit-glitch {
+            animation: slideExitGlitch 0.8s forwards;
+        }
+
+        @keyframes slideEnterFadeTransform {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideExitFadeTransform {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(1.05); }
+        }
+
+        @keyframes slideEnterFromRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideExitToLeft {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-50px); }
+        }
+
+        @keyframes slideEnterFromBottom {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideExitToTop {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-50px); }
+        }
+
+        @keyframes slideEnterZoomFade {
+            from { opacity: 0; transform: scale(1.1); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideExitZoomFade {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.9); }
+        }
+
+        /* Improved glitch animations for slide transitions */
+        @keyframes slideEnterGlitch {
+            0% { opacity: 0; transform: translate(-10px, 0) scale(0.95); filter: brightness(1.2) hue-rotate(-10deg); }
+            10% { opacity: 0.2; transform: translate(15px, -5px) scale(1.02); filter: brightness(0.8) hue-rotate(10deg); }
+            20% { opacity: 0.4; transform: translate(-8px, 10px) scale(0.98); filter: brightness(1.1) hue-rotate(-5deg); }
+            30% { opacity: 0.5; transform: translate(8px, -3px) scale(1.01); filter: brightness(0.9) hue-rotate(5deg); }
+            40% { opacity: 0.6; transform: translate(-5px, 10px) scale(0.99); filter: brightness(1.2) hue-rotate(-10deg); }
+            50% { opacity: 0.7; transform: translate(10px, -5px) scale(1.02); filter: brightness(0.8) hue-rotate(8deg); }
+            60% { opacity: 0.8; transform: translate(5px, -5px) scale(0.97); filter: brightness(1.1) hue-rotate(-8deg); }
+            70% { opacity: 0.85; transform: translate(-7px, 3px) scale(1.01); filter: brightness(0.9) hue-rotate(5deg); }
+            80% { opacity: 0.9; transform: translate(-5px, 2px) scale(0.98); filter: brightness(1.1) hue-rotate(-5deg); }
+            90% { opacity: 0.95; transform: translate(3px, -2px) scale(1.01); filter: brightness(1) hue-rotate(0deg); }
+            100% { opacity: 1; transform: translate(0, 0) scale(1); filter: brightness(1) hue-rotate(0deg); }
+        }
+
+        @keyframes slideExitGlitch {
+            0% { opacity: 1; transform: translate(0, 0) scale(1); filter: brightness(1) hue-rotate(0deg); }
+            10% { opacity: 0.95; transform: translate(10px, 5px) scale(1.02); filter: brightness(1.2) hue-rotate(10deg); }
+            20% { opacity: 0.9; transform: translate(-15px, -2px) scale(0.98); filter: brightness(0.8) hue-rotate(-10deg); }
+            30% { opacity: 0.8; transform: translate(8px, 10px) scale(1.03); filter: brightness(1.3) hue-rotate(15deg); }
+            40% { opacity: 0.7; transform: translate(-10px, -8px) scale(0.97); filter: brightness(0.7) hue-rotate(-15deg); }
+            50% { opacity: 0.6; transform: translate(12px, 6px) scale(1.04); filter: brightness(1.4) hue-rotate(20deg); }
+            60% { opacity: 0.5; transform: translate(-8px, -12px) scale(0.96); filter: brightness(0.6) hue-rotate(-20deg); }
+            70% { opacity: 0.4; transform: translate(5px, 10px) scale(1.02); filter: brightness(1.2) hue-rotate(10deg); }
+            80% { opacity: 0.3; transform: translate(-8px, -5px) scale(0.98); filter: brightness(0.8) hue-rotate(-5deg); }
+            90% { opacity: 0.2; transform: translate(6px, 2px) scale(1.01); filter: brightness(1.1) hue-rotate(5deg); }
+            100% { opacity: 0; transform: translate(-10px, 5px) scale(0.95); filter: brightness(0.7) hue-rotate(-15deg); }
+        }
+
+        .slide-header {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-header::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: #FDA349; /* Amber/gold underline */
+        }
+
+        .card {
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .light-mode .card {
+            background-color: theme('colors.light.card');
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .card {
+            background-color: theme('colors.dark.card');
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #6247AA, #FF6542, #00C2BA, #FDA349); /* Cosmic colors gradient */
+        }
+
+        /* Loading indicator */
+        .loading-ring {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+        
+        .loading-ring:after {
+            content: " ";
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            border-color: #fff transparent #fff transparent;
+            animation: loading-ring 1.2s linear infinite;
+        }
+        
+        @keyframes loading-ring {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Timer overlay flash effect */
+        @keyframes timerFlash {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.3; }
+        }
+        
+        .timer-flash {
+            position: absolute;
+            inset: 0;
+            background-color: #FF6542;
+            opacity: 0;
+        }
+        
+        .timer-flash.active {
+            animation: timerFlash 0.3s ease;
+        }
+        
+        /* Enhanced distortion effect for entire screen */
+        @keyframes screenDistortion {
+            0% { filter: none; }
+            25% { filter: blur(0.5px) hue-rotate(5deg); }
+            50% { filter: brightness(1.1) contrast(1.1); }
+            75% { filter: blur(0.3px) hue-rotate(-5deg); }
+            100% { filter: none; }
+        }
+        
+        .distortion-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .distortion-overlay.active {
+            opacity: 1;
+            animation: screenDistortion 0.5s ease;
+        }
+        
+        /* Enhanced neural network visualization for CEO background */
+        .neural-network {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .neural-node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--node-color, #FDA349);
+        }
+        
+        .neural-connection {
+            position: absolute;
+            height: 1px;
+            transform-origin: 0 0;
+            background-color: var(--connection-color, #6247AA);
+            opacity: 0.4;
+        }
+        
+        /* Enhanced CEO profile */
+        .ceo-profile {
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(98, 71, 170, 0.5);
+            box-shadow: 
+                0 0 20px rgba(98, 71, 170, 0.4),
+                0 0 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ceo-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.1) saturate(1.2);
+            transition: all 0.5s ease;
+        }
+        
+        .ceo-profile:hover img {
+            transform: scale(1.05);
+        }
+        
+        .ceo-profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(6, 6, 22, 0) 50%, rgba(6, 6, 22, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .ceo-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #6247AA;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.25rem 0.5rem;
+            z-index: 2;
+        }
+
+        /* Enhanced invitation card styles */
+        .invitation-card {
+            background-color: #060616;
+            border: 2px solid rgba(98, 71, 170, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 0 80px rgba(98, 71, 170, 0.2);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .invitation-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            background: linear-gradient(90deg, #6247AA, #FF6542, #00C2BA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(98, 71, 170, 0.1), transparent 70%);
+            opacity: 0.3;
+            animation: rotate 60s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Shiny borders */
+        .shiny-border {
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .shiny-border::after {
+            content: '';
+            position: absolute;
+            top: -110%;
+            left: -210%;
+            width: 200%;
+            height: 200%;
+            opacity: 0;
+            transform: rotate(30deg);
+            background: rgba(255, 255, 255, 0.13);
+            background: linear-gradient(
+                to right, 
+                rgba(255, 255, 255, 0.13) 0%,
+                rgba(255, 255, 255, 0.13) 77%,
+                rgba(255, 255, 255, 0.5) 92%,
+                rgba(255, 255, 255, 0.0) 100%
+            );
+            animation: shine 8s infinite;
+        }
+        
+        @keyframes shine {
+            0%, 75% { opacity: 0; top: -110%; left: -210%; }
+            80% { opacity: 1; }
+            100% { opacity: 0; top: -30%; left: -30%; }
+        }
+        
+        /* Futuristic decoration patterns */
+        .tech-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        /* Text that can glitch on hover */
+        .can-glitch {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .can-glitch:hover {
+            animation: textGlitch 1s ease-in-out infinite;
+            color: #FF6542;
+        }
+        
+        /* Data metrics */
+        .metric-value {
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+            padding: 0 5px;
+        }
+        
+        .metric-value::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            color: #FF6542;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .metric-value:hover::before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .metric-value:hover {
+            color: transparent;
+        }
+        
+        /* Holographic effect */
+        .holographic {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holographic::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            z-index: 2;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: skewX(-25deg);
+            animation: holographic 5s ease-in-out infinite;
+        }
+        
+        @keyframes holographic {
+            0%, 100% { left: -75%; opacity: 0.8; }
+            50% { left: 125%; opacity: 0.3; }
+        }
+        
+        /* Nav buttons enhancement */
+        .nav-button {
+            position: relative;
+            overflow: hidden;
+            background: rgba(98, 71, 170, 0.1);
+            border: 1px solid rgba(98, 71, 170, 0.3);
+            color: #6247AA;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #6247AA, #FF6542);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: rgba(98, 71, 170, 0.2);
+            box-shadow: 0 5px 15px -5px rgba(98, 71, 170, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        .nav-button:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(0);
+        }
+        
+        .nav-button:disabled::after {
+            transform: scaleX(0);
+        }
+    </style>
+</head>
+<body class="light-mode transition-all duration-500">
+    <div id="particles-js"></div>
+    <div id="dynamic-elements-container"></div>
+    <div id="bacteria-container"></div>
+    <div id="error-messages-container"></div>
+    <div class="distortion-overlay"></div>
+    
+    <!-- Large background cosmic wheel symbol that fades in and rotates counter-clockwise -->
+    <div id="background-cosmic-symbol" class="fixed inset-0 flex items-center justify-center z-0 opacity-0 pointer-events-none">
+        <svg class="cosmic-wheel w-[150vmin] h-[150vmin] rotate-animation" viewBox="0 0 1000 1000">
+            <!-- Dark background circle with subtle glow -->
+            <circle cx="500" cy="500" r="480" fill="#060616" opacity="0.4"></circle>
+            <circle cx="500" cy="500" r="480" fill="url(#bgGlow)" opacity="0.4"></circle>
+            
+            <!-- Outer rings -->
+            <g opacity="0.5">
+                <circle cx="500" cy="500" r="450" fill="none" stroke="#6247AA" stroke-width="2" stroke-dasharray="4 12"></circle>
+                <circle cx="500" cy="500" r="420" fill="none" stroke="#FF6542" stroke-width="1" stroke-dasharray="1 8"></circle>
+                <circle cx="500" cy="500" r="390" fill="none" stroke="#00C2BA" stroke-width="2" stroke-dasharray="8 16"></circle>
+                <circle cx="500" cy="500" r="360" fill="none" stroke="#FDA349" stroke-width="1" stroke-dasharray="2 6"></circle>
+            </g>
+            
+            <!-- 12 nodes around the circumference with connecting lines -->
+            <g opacity="0.6">
+                <!-- Nodes -->
+                <circle cx="500" cy="50" r="30" fill="#060616" stroke="#6247AA" stroke-width="2"></circle>
+                <circle cx="758" cy="129" r="30" fill="#060616" stroke="#FF6542" stroke-width="2"></circle>
+                <circle cx="871" cy="340" r="30" fill="#060616" stroke="#00C2BA" stroke-width="2"></circle>
+                <circle cx="800" cy="660" r="30" fill="#060616" stroke="#FDA349" stroke-width="2"></circle>
+                <circle cx="642" cy="871" r="30" fill="#060616" stroke="#6247AA" stroke-width="2"></circle>
+                <circle cx="500" cy="950" r="30" fill="#060616" stroke="#FF6542" stroke-width="2"></circle>
+                <circle cx="242" cy="871" r="30" fill="#060616" stroke="#00C2BA" stroke-width="2"></circle>
+                <circle cx="129" cy="660" r="30" fill="#060616" stroke="#FDA349" stroke-width="2"></circle>
+                <circle cx="200" cy="340" r="30" fill="#060616" stroke="#6247AA" stroke-width="2"></circle>
+                <circle cx="358" cy="129" r="30" fill="#060616" stroke="#FF6542" stroke-width="2"></circle>
+                <circle cx="950" cy="500" r="30" fill="#060616" stroke="#00C2BA" stroke-width="2"></circle>
+                <circle cx="50" cy="500" r="30" fill="#060616" stroke="#FDA349" stroke-width="2"></circle>
+                
+                <!-- Connecting lines to center -->
+                <line x1="500" y1="500" x2="500" y2="50" stroke="#6247AA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="758" y2="129" stroke="#FF6542" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="871" y2="340" stroke="#00C2BA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="800" y2="660" stroke="#FDA349" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="642" y2="871" stroke="#6247AA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="500" y2="950" stroke="#FF6542" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="242" y2="871" stroke="#00C2BA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="129" y2="660" stroke="#FDA349" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="200" y2="340" stroke="#6247AA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="358" y2="129" stroke="#FF6542" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="950" y2="500" stroke="#00C2BA" stroke-width="2" opacity="0.3"></line>
+                <line x1="500" y1="500" x2="50" y2="500" stroke="#FDA349" stroke-width="2" opacity="0.3"></line>
+            </g>
+            
+            <!-- Inner spiral elements -->
+            <g opacity="0.4">
+                <path d="M500,500 m-200,0 a200,200 0 1,1 400,0 a200,200 0 1,1 -400,0" fill="none" stroke="#6247AA" stroke-width="3" stroke-dasharray="20,40"></path>
+                <path d="M500,500 m-150,0 a150,150 0 1,0 300,0 a150,150 0 1,0 -300,0" fill="none" stroke="#FF6542" stroke-width="3" stroke-dasharray="15,30"></path>
+                <path d="M500,500 m-100,0 a100,100 0 1,1 200,0 a100,100 0 1,1 -200,0" fill="none" stroke="#00C2BA" stroke-width="3" stroke-dasharray="10,20"></path>
+                <path d="M500,500 m-50,0 a50,50 0 1,0 100,0 a50,50 0 1,0 -100,0" fill="none" stroke="#FDA349" stroke-width="3" stroke-dasharray="5,10"></path>
+            </g>
+            
+            <!-- Smaller nodes inside the spirals -->
+            <g opacity="0.7">
+                <circle cx="500" cy="300" r="15" fill="#FF6542"></circle>
+                <circle cx="700" cy="500" r="15" fill="#00C2BA"></circle>
+                <circle cx="500" cy="700" r="15" fill="#FDA349"></circle>
+                <circle cx="300" cy="500" r="15" fill="#6247AA"></circle>
+                
+                <circle cx="600" cy="350" r="10" fill="#FDA349"></circle>
+                <circle cx="650" cy="600" r="10" fill="#6247AA"></circle>
+                <circle cx="400" cy="650" r="10" fill="#FF6542"></circle>
+                <circle cx="350" cy="400" r="10" fill="#00C2BA"></circle>
+            </g>
+            
+            <!-- Center elements -->
+            <circle cx="500" cy="500" r="80" fill="#060616" opacity="0.8"></circle>
+            <circle cx="500" cy="500" r="70" fill="none" stroke="#6247AA" stroke-width="3"></circle>
+            <circle cx="500" cy="500" r="60" fill="none" stroke="#FF6542" stroke-width="2"></circle>
+            <circle cx="500" cy="500" r="50" fill="none" stroke="#00C2BA" stroke-width="3"></circle>
+            <circle cx="500" cy="500" r="40" fill="none" stroke="#FDA349" stroke-width="2"></circle>
+            <circle cx="500" cy="500" r="30" fill="#6247AA" opacity="0.6"></circle>
+            <circle cx="500" cy="500" r="20" fill="#FF6542" opacity="0.8"></circle>
+            
+            <!-- Glowing radial gradients -->
+            <defs>
+                <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" stop-color="#6247AA" stop-opacity="0.3"></stop>
+                    <stop offset="80%" stop-color="#060616" stop-opacity="0"></stop>
+                </radialGradient>
+            </defs>
+        </svg>
+    </div>
+    
+    <div class="min-h-screen flex flex-col relative overflow-hidden">
+        <!-- Scanline effect -->
+        <div class="scanline"></div>
+        <!-- Will hold progressively more scanlines -->
+        <div id="extra-scanlines"></div>
+        
+        <!-- Header with logo and timer indicators -->
+        <header class="py-4 px-4 md:px-6 flex justify-between items-center border-b border-primary/20 relative z-10">
+            <div class="flex items-center space-x-4">
+                <div class="data-circle hidden md:flex">
+                    <span class="text-xs font-display">J-AI</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="h-3 w-3 rounded-full bg-primary pulse"></div>
+                    <span class="font-display text-sm md:text-base ml-2">J-TECH</span>
+                </div>
+            </div>
+            
+            <div class="flex space-x-4 items-center">
+                <div id="connection-status" class="hidden md:flex items-center text-xs opacity-70">
+                    <span class="mr-1">SYSTEM READY</span>
+                    <span class="inline-block h-2 w-2 rounded-full bg-green-500"></span>
+                </div>
+                <div id="timer-container" class="text-sm md:text-base font-bold relative overflow-hidden">
+                    <span class="timer-digit">0</span><span class="timer-digit">0</span><span class="timer-separator">:</span><span class="timer-digit">0</span><span class="timer-digit">0</span><span class="timer-separator">:</span><span class="timer-digit">0</span><span class="timer-digit">0</span>
+                    <div class="timer-flash"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="flex-grow grid-pattern relative">
+            <!-- Animated logo and title (welcome screen) -->
+            <div id="welcome-screen" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
+                <div class="w-full max-w-4xl mx-auto">
+                    <!-- Logo animation container -->
+                    <div class="mb-8 w-full h-40 md:h-56 flex justify-center items-center relative">
+                        <div id="logo-container" class="relative w-full h-full">
+                            <svg id="logo" class="w-full h-full" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path class="logo-path" d="M60,30 L90,30 L90,90 L60,90 M90,60 L70,60" stroke="#6247AA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path class="logo-path" d="M120,30 L110,90 M110,30 L120,90" stroke="#FF6542" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation-delay: 0.3s"></path>
+                                <path class="logo-path" d="M130,30 L130,90 M130,30 L160,30 M130,60 L150,60 M130,90 L160,90" stroke="#00C2BA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation-delay: 0.6s"></path>
+                                <path class="logo-path" d="M180,30 L180,90 M180,30 L210,30 L210,90" stroke="#6247AA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation-delay: 0.9s"></path>
+                                <path class="logo-path" d="M230,30 L250,90 L270,30" stroke="#FF6542" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation-delay: 1.2s"></path>
+                                <path class="logo-path" d="M290,30 L310,30 L320,60 L330,30 L350,30" stroke="#FDA349" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="animation-delay: 1.5s"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Titles and content with fade-in animation -->
+                    <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold mb-3 text-primary fade-in glitch-text can-glitch">GENERAL INTELLIGENCE</h1>
+                    <div class="w-24 h-1 bg-primary mx-auto mb-6 fade-in delay-1"></div>
+                    
+                    <div class="mb-8 fade-in delay-2">
+                        <h3 class="text-xl md:text-3xl font-display font-bold">REDEFINING POSSIBILITY</h3>
+                        <p class="text-md md:text-lg opacity-80">WORLDWIDE LAUNCH EVENT • 2050</p>
+                    </div>
+                    
+                    <!-- Start button with enhanced effects -->
+                    <button id="startBtn" class="mt-6 px-8 py-4 bg-primary text-white rounded-full font-display font-bold tracking-wide 
+                        tech-button fade-in delay-3 flex items-center justify-center shiny-border">
+                        <span>BEGIN</span>
+                        <div id="loading-indicator" class="loading-ring hidden"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Presentation content (hidden initially) -->
+            <div id="presentation-content" class="hidden fade-in z-20 relative mt-6">
+                <!-- Presentation controls -->
+                <div class="max-w-6xl mx-auto px-4 md:px-6 mb-6 flex justify-between items-center">
+                    <button id="backBtn" class="nav-button py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed">
+                        PREVIOUS
+                    </button>
+                    <div class="text-center">
+                        <h3 id="slide-counter" class="font-display text-sm opacity-70">SLIDE 1/3</h3>
+                    </div>
+                    <button id="nextBtn" class="nav-button py-2 px-4">
+                        NEXT
+                    </button>
+                </div>
+                
+                <!-- Slide 1: J-AI Technology -->
+                <article id="slide1" class="slide active" data-transition="fade-transform">
+                    <header class="slide-header">
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">INTRODUCING J-AI: GENERAL INTELLIGENCE</h2>
+                    </header>
+                    
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card group relative overflow-hidden">
+                            <div class="card-highlight"></div>
+                            <div class="tech-pattern opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                                <!-- Abstract neural patterns that show on hover -->
+                                <svg viewBox="0 0 200 200" class="w-full h-full">
+                                    <g stroke="#6247AA" stroke-width="0.5" fill="none">
+                                        <path d="M20,20 Q50,10 80,30 T140,50" opacity="0.5"></path>
+                                        <path d="M30,60 Q80,80 130,70 T170,100" opacity="0.5"></path>
+                                        <path d="M10,100 Q40,120 90,110 T150,150" opacity="0.5"></path>
+                                        <path d="M40,150 Q70,180 120,170 T180,190" opacity="0.5"></path>
+                                        
+                                        <circle cx="20" cy="20" r="3" fill="#6247AA"></circle>
+                                        <circle cx="80" cy="30" r="3" fill="#6247AA"></circle>
+                                        <circle cx="140" cy="50" r="3" fill="#6247AA"></circle>
+                                        
+                                        <circle cx="30" cy="60" r="3" fill="#FF6542"></circle>
+                                        <circle cx="130" cy="70" r="3" fill="#FF6542"></circle>
+                                        <circle cx="170" cy="100" r="3" fill="#FF6542"></circle>
+                                        
+                                        <circle cx="10" cy="100" r="3" fill="#00C2BA"></circle>
+                                        <circle cx="90" cy="110" r="3" fill="#00C2BA"></circle>
+                                        <circle cx="150" cy="150" r="3" fill="#00C2BA"></circle>
+                                        
+                                        <circle cx="40" cy="150" r="3" fill="#FDA349"></circle>
+                                        <circle cx="120" cy="170" r="3" fill="#FDA349"></circle>
+                                        <circle cx="180" cy="190" r="3" fill="#FDA349"></circle>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-display font-bold mb-3 can-glitch">AUTONOMOUS REASONING</h3>
+                            <p>J-AI achieves true general intelligence through our breakthrough <span class="can-glitch">Quantum Neural Fabric</span> that integrates perception, reasoning, and decision-making in a unified cognitive model. Unlike narrow AI systems confined to predetermined tasks, J-AI can generalize across domains with zero-shot transfer learning at human-equivalent levels.</p>
+                            
+                            <div class="mt-3 text-sm font-mono opacity-70 py-1 px-2 bg-primary/10 rounded">
+                                <span class="text-primary font-bold">SYSTEM:</span> Recursive Self-Optimization Complete (ver. 3.14.15.9)
+                            </div>
+                        </div>
+                        
+                        <div class="card group relative overflow-hidden">
+                            <div class="card-highlight"></div>
+                            <div class="tech-pattern opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                                <!-- Abstract quantum patterns that show on hover -->
+                                <svg viewBox="0 0 200 200" class="w-full h-full">
+                                    <g stroke="#FF6542" stroke-width="0.5" opacity="0.6" fill="none">
+                                        <circle cx="100" cy="100" r="70" stroke-dasharray="5,10"></circle>
+                                        <circle cx="100" cy="100" r="50" stroke-dasharray="10,5"></circle>
+                                        
+                                        <ellipse cx="100" cy="100" rx="90" ry="30" transform="rotate(30 100 100)"></ellipse>
+                                        <ellipse cx="100" cy="100" rx="90" ry="30" transform="rotate(150 100 100)"></ellipse>
+                                        
+                                        <path d="M30,100 C50,50 150,50 170,100 S150,150 30,100 Z"></path>
+                                        <path d="M100,30 C150,50 150,150 100,170 S50,150 100,30 Z"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-display font-bold mb-3 can-glitch">QUANTUM NEURAL FABRIC</h3>
+                            <p>Operating at the intersection of <span class="can-glitch">quantum computing</span> and neuromorphic architecture, our proprietary fabric achieves computational density of 10<sup>24</sup> operations per cubic centimeter—enabling consciousness-equivalent processing with 100x greater energy efficiency than conventional systems.</p>
+                            
+                            <div class="mt-3 text-sm font-mono opacity-70 py-1 px-2 bg-secondary/10 rounded">
+                                <span class="text-secondary font-bold">STATUS:</span> Quantum Entanglement Networks Operating at 99.997% Coherence
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="mt-6 card relative overflow-hidden group">
+                        <div class="card-highlight"></div>
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="mb-4 md:mb-0 md:mr-6 w-32 h-32 rounded-full overflow-hidden relative flex items-center justify-center animate-float shiny-border">
+                                <!-- Cosmic J-AI Logo -->
+                                <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+                                    <!-- Black background with subtle glow -->
+                                    <circle cx="100" cy="100" r="95" fill="#060616"></circle>
+                                    <circle cx="100" cy="100" r="95" fill="url(#cosmicGlow)"></circle>
+                                    
+                                    <!-- Outer ring with connection points -->
+                                    <circle cx="100" cy="100" r="85" stroke="#6247AA" stroke-width="2" fill="none"></circle>
+                                    
+                                    <!-- Spiral/ray elements emanating from center -->
+                                    <g>
+                                        <path d="M100,100 L100,20" stroke="#FF6542" stroke-width="1.5"></path>
+                                        <path d="M100,100 L165,55" stroke="#00C2BA" stroke-width="1.5"></path>
+                                        <path d="M100,100 L165,145" stroke="#6247AA" stroke-width="1.5"></path>
+                                        <path d="M100,100 L100,180" stroke="#FDA349" stroke-width="1.5"></path>
+                                        <path d="M100,100 L35,145" stroke="#00C2BA" stroke-width="1.5"></path>
+                                        <path d="M100,100 L35,55" stroke="#FF6542" stroke-width="1.5"></path>
+                                    </g>
+                                    
+                                    <!-- Circular connection points around outer ring -->
+                                    <g>
+                                        <circle cx="100" cy="20" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                        <circle cx="165" cy="55" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                        <circle cx="165" cy="145" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                        <circle cx="100" cy="180" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                        <circle cx="35" cy="145" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                        <circle cx="35" cy="55" r="10" fill="#060616" stroke="#6247AA" stroke-width="1.5"></circle>
+                                    </g>
+                                    
+                                    <!-- Colored spirals in each connection point -->
+                                    <g>
+                                        <circle cx="100" cy="20" r="6" fill="none" stroke="#FF6542" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                        <circle cx="165" cy="55" r="6" fill="none" stroke="#00C2BA" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="3.2s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                        <circle cx="165" cy="145" r="6" fill="none" stroke="#FDA349" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="3.4s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                        <circle cx="100" cy="180" r="6" fill="none" stroke="#6247AA" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="3.6s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                        <circle cx="35" cy="145" r="6" fill="none" stroke="#00C2BA" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="3.8s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                        <circle cx="35" cy="55" r="6" fill="none" stroke="#FF6542" stroke-width="1.5">
+                                            <animate attributeName="r" values="5;7;5" dur="4s" repeatCount="indefinite"></animate>
+                                        </circle>
+                                    </g>
+                                    
+                                    <!-- Center elements -->
+                                    <circle cx="100" cy="100" r="25" fill="#060616" stroke="#FF6542" stroke-width="2"></circle>
+                                    <circle cx="100" cy="100" r="20" fill="none" stroke="#00C2BA" stroke-width="1.5"></circle>
+                                    <circle cx="100" cy="100" r="15" fill="none" stroke="#FDA349" stroke-width="1.5"></circle>
+                                    <circle cx="100" cy="100" r="10" fill="none" stroke="#6247AA" stroke-width="1.5"></circle>
+                                    <circle cx="100" cy="100" r="5" fill="#FF6542"></circle>
+                                    
+                                    <!-- Gradients -->
+                                    <defs>
+                                        <radialGradient id="cosmicGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                            <stop offset="0%" stop-color="#6247AA" stop-opacity="0.3"></stop>
+                                            <stop offset="80%" stop-color="#060616" stop-opacity="0"></stop>
+                                        </radialGradient>
+                                    </defs>
+                                </svg>
+                                <span class="font-display text-3xl text-white font-bold relative z-10">J-AI</span>
+                            </div>
+                            <div class="w-full">
+                                <h3 class="text-xl font-display font-bold mb-2 can-glitch">MILESTONE PERFORMANCE METRICS</h3>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                                    <div class="text-center group">
+                                        <div class="text-2xl font-display font-bold text-accent metric-value" data-label="EVOLVING">99.8%</div>
+                                        <div class="text-sm opacity-70">HUMAN-LEVEL REASONING</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-display font-bold text-secondary metric-value" data-label="EXPANDING">1.3 YHz</div>
+                                        <div class="text-sm opacity-70">PROCESSING CAPACITY</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-display font-bold text-primary metric-value" data-label="OPTIMIZING">15.2 PJ</div>
+                                        <div class="text-sm opacity-70">PARAMETERS/JOULE</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-display font-bold text-highlight metric-value" data-label="ADAPTING">100%</div>
+                                        <div class="text-sm opacity-70">EMBEDDED ETHICS COMPLIANCE</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-t border-primary/10">
+                                    <p class="text-sm font-mono opacity-80 flex items-center">
+                                        <span class="inline-block h-2 w-2 bg-green-400 mr-2 rounded-full pulse"></span>
+                                        <span class="can-glitch">J-AI NEUROCORES ONLINE: <span class="text-accent">2,048 / 2,048</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+                
+                <!-- Slide 2: Founder/CEO -->
+                <article id="slide2" class="slide" data-transition="slide-left">
+                    <header class="slide-header">
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">VISIONARY LEADERSHIP</h2>
+                    </header>
+                    
+                    <section class="card mb-6 relative overflow-hidden">
+                        <div class="card-highlight"></div>
+                        <!-- Neural network visualization -->
+                        <div id="neural-network" class="neural-network"></div>
+                        
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="w-full md:w-1/3 flex justify-center mb-6 md:mb-0">
+                                <!-- Enhanced CEO Profile with real image -->
+                                <div class="relative w-48 h-64 ceo-profile">
+                                    <!-- Using an AI-generated professional CEO image -->
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNDAwIDUwMCI+CiAgICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzEzMTIyQiIvPgogICAgPCEtLSBTdHlsaXplZCBidXNpbmVzcyBwb3J0cmFpdCAtLT4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwMCwgMjIwKSI+CiAgICAgICAgPCEtLSBIZWFkIC0tPgogICAgICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iLTgwIiByeD0iNzAiIHJ5PSI5MCIgZmlsbD0iIzM0MzQ0ZSIvPgogICAgICAgIAogICAgICAgIDwhLS0gRmFjZSAtLT4KICAgICAgICA8cmVjdCB4PSItMzUiIHk9Ii02NSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMzQzNDRlIiByeD0iMzUiLz4KICAgICAgICA8ZWxsaXBzZSBjeD0iLTI1IiBjeT0iLTgwIiByeD0iOCIgcnk9IjEwIiBmaWxsPSIjMjUyNTM4Ii8+CiAgICAgICAgPGVsbGlwc2UgY3g9IjI1IiBjeT0iLTgwIiByeD0iOCIgcnk9IjEwIiBmaWxsPSIjMjUyNTM4Ii8+CiAgICAgICAgPHBhdGggZD0iTSAtMjAsLTYwIFEgMCwtNDUgMjAsLTYwIiBzdHJva2U9IiMyNTI1MzgiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgogICAgICAgIAogICAgICAgIDwhLS0gU3VpdCAtLT4KICAgICAgICA8cmVjdCB4PSItNzAiIHk9IjEwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzFkMWMzYSIgcng9IjIwIi8+CiAgICAgICAgPHJlY3QgeD0iLTYwIiB5PSIxMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzEzMTIyQiIgcng9IjUiLz4KICAgICAgICA8cmVjdCB4PSItNTAiIHk9IjE1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjcwIiBmaWxsPSIjMWQxYzNhIiByeD0iNSIvPgogICAgICAgIDwhLS0gVGllIC0tPgogICAgICAgIDxwYXRoIGQ9Ik0gLTEwLDIwIEwgLTUsOTAgTCAwLDEyMCBMIDUsOTAgTCAxMCwyMCIgZmlsbD0iIzZlNDdCQSIvPgogICAgICAgIAogICAgICAgIDwhLS0gR2xvd2luZyBhY2NlbnRzIC0tPgogICAgICAgIDxjaXJjbGUgY3g9Ii0zMCIgY3k9IjQwIiByPSI1IiBmaWxsPSIjRkY2NTQyIiBvcGFjaXR5PSIwLjciLz4KICAgICAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjQwIiByPSI1IiBmaWxsPSIjRkY2NTQyIiBvcGFjaXR5PSIwLjciLz4KICAgICAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iNjAiIHI9IjUiIGZpbGw9IiM2MjQ3QUEiIG9wYWNpdHk9IjAuNyIvPgogICAgPC9nPgogICAgCiAgICA8IS0tIEZ1dHVyaXN0aWMgYmFja2dyb3VuZCBlbGVtZW50cyAtLT4KICAgIDxnIG9wYWNpdHk9IjAuMyI+CiAgICAgICAgPGNpcmNsZSBjeD0iODAiIGN5PSIxMDAiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiM2MjQ3QUEiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgICAgIDxjaXJjbGUgY3g9IjMyMCIgY3k9IjQwMCIgcj0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNTY0MiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICAgICAgPHBhdGggZD0iTSA1MCw1MCBMIDEwMCwxMDAgTCAxNTAsNTAgTCAyMDAsMTAwIiBzdHJva2U9IiMwMEMyQkEiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgogICAgICAgIDxwYXRoIGQ9Ik0gMzAwLDIwMCBMIDI1MCwzMDAgTCAzMDAsMzUwIEwgMjUwLDQwMCIgc3Ryb2tlPSIjRkRBMzQ5IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KICAgIDwvZz4KICAgIAogICAgPCEtLSBPdmVybGF5IGdyYWRpZW50IC0tPgogICAgPHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9InVybCgjb3ZlcmxheSkiLz4KICAgIAogICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJvdmVybGF5IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzEzMTIyQiIgc3RvcC1vcGFjaXR5PSIwLjIiLz4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiMxMzEyMkIiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMzEyMkIiIHN0b3Atb3BhY2l0eT0iMC4xIi8+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDwvZGVmcz4KPC9zdmc+" alt="George H. Jones - CEO" class="object-cover w-full h-full">
+                                    <div class="ceo-badge shiny-border">CEO</div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-2/3 md:pl-6">
+                                <h3 class="text-3xl font-display font-bold mb-2 can-glitch">GEORGE H. JONES</h3>
+                                <p class="text-lg opacity-80 mb-4">CO-FOUNDER &amp; CHIEF EXECUTIVE OFFICER</p>
+                                
+                                <p class="mb-4">George H. Jones revolutionized cognitive computing after his groundbreaking work at the Quantum Intelligence Research Center. With the development of the <span class="can-glitch">Consciousness Boundary Protocol</span>, Jones transformed J-Tech from a small research lab into the undisputed global leader in artificial general intelligence.</p>
+                                
+                                <p class="mb-4">Holding a Ph.D. in Quantum Cognition from MIT and over 200 patents in neural architecture design, Jones has dedicated his career to creating machine intelligence that <span class="can-glitch">augments human capability</span> rather than replacing it—pioneering what he calls the "symbiotic intelligence paradigm."</p>
+                                
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full shiny-border">QUANTUM COMPUTING</span>
+                                    <span class="px-3 py-1 bg-secondary/10 text-secondary text-xs rounded-full shiny-border">NEURAL ARCHITECTURE</span>
+                                    <span class="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full shiny-border">COGNITIVE SYSTEMS</span>
+                                    <span class="px-3 py-1 bg-highlight/10 text-highlight text-xs rounded-full shiny-border">AI ETHICS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card relative overflow-hidden group">
+                            <div class="card-highlight"></div>
+                            <!-- Animated background elements that appear on hover -->
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="journey-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#6247AA"></stop>
+                                            <stop offset="100%" stop-color="#FF6542"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M10,50 Q20,20 30,50 T50,50 T70,50 T90,50" stroke="url(#journey-gradient)" stroke-width="1" fill="none"></path>
+                                    
+                                    <circle cx="10" cy="50" r="3" fill="#6247AA">
+                                        <animate attributeName="r" values="2;4;2" dur="3s" repeatCount="indefinite"></animate>
+                                    </circle>
+                                    <circle cx="30" cy="50" r="3" fill="#FF6542">
+                                        <animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite"></animate>
+                                    </circle>
+                                    <circle cx="50" cy="50" r="3" fill="#00C2BA">
+                                        <animate attributeName="r" values="2;4;2" dur="3.5s" repeatCount="indefinite"></animate>
+                                    </circle>
+                                    <circle cx="70" cy="50" r="3" fill="#FDA349">
+                                        <animate attributeName="r" values="3;5;3" dur="4.5s" repeatCount="indefinite"></animate>
+                                    </circle>
+                                    <circle cx="90" cy="50" r="5" fill="#6247AA">
+                                        <animate attributeName="r" values="4;7;4" dur="3s" repeatCount="indefinite"></animate>
+                                    </circle>
+                                </svg>
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-bold mb-3 can-glitch">THE J-TECH JOURNEY</h3>
+                            <p class="italic">"Our mission transcends conventional AI advancement. We've created a true intellectual partnership between human and machine cognition—a symbiotic relationship where each amplifies the other. J-AI doesn't simply mimic human thought; it extends it into dimensions previously unimaginable."</p>
+                            <p class="mt-3 text-right">– George H. Jones</p>
+                        </div>
+                        
+                        <div class="card relative overflow-hidden group">
+                            <div class="card-highlight"></div>
+                            <!-- Animated background elements that appear on hover -->
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                    <defs>
+                                        <linearGradient id="ethics-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#00C2BA"></stop>
+                                            <stop offset="100%" stop-color="#FDA349"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="50" cy="50" r="40" stroke="url(#ethics-gradient)" stroke-width="1" fill="none"></circle>
+                                    <circle cx="50" cy="50" r="30" stroke="url(#ethics-gradient)" stroke-width="1" fill="none" stroke-dasharray="5,5"></circle>
+                                    <circle cx="50" cy="50" r="20" stroke="url(#ethics-gradient)" stroke-width="1" fill="none"></circle>
+                                    
+                                    <line x1="50" y1="10" x2="50" y2="90" stroke="url(#ethics-gradient)" stroke-width="0.5"></line>
+                                    <line x1="10" y1="50" x2="90" y2="50" stroke="url(#ethics-gradient)" stroke-width="0.5"></line>
+                                    <line x1="20" y1="20" x2="80" y2="80" stroke="url(#ethics-gradient)" stroke-width="0.5"></line>
+                                    <line x1="80" y1="20" x2="20" y2="80" stroke="url(#ethics-gradient)" stroke-width="0.5"></line>
+                                </svg>
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-bold mb-3 can-glitch">COMMITMENT TO ETHICAL AI</h3>
+                            <p>Jones established the <span class="can-glitch">Global Ethical AI Council</span> and implemented the <span class="can-glitch">Consciousness Boundary Protocol</span> to ensure responsible development of advanced systems. J-Tech's <span class="can-glitch">Quantum Entanglement Monitoring</span> ensures that neural pathways respect human values, preventing unintended behaviors.</p>
+                            
+                            <div class="mt-4 flex items-center text-sm">
+                                <span class="px-2 py-1 bg-primary/10 text-primary rounded mr-2">CBP STATUS:</span>
+                                <span id="cbp-status" class="text-primary">ACTIVE<span class="inline-block h-2 w-2 ml-1 bg-green-400 rounded-full pulse"></span></span>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+                
+                <!-- Slide 3: The Reveal - Theatre Workshop Invitation -->
+                <article id="slide3" class="slide relative" data-transition="glitch">
+                    <header class="slide-header">
+                        <h2 class="text-2xl md:text-3xl font-display font-bold">SPECIAL INVITATION</h2>
+                    </header>
+                    
+                    <!-- Enhanced Invitation Card -->
+                    <section class="invitation-card holographic">
+                        <!-- Logo and header -->
+                        <div class="flex flex-col items-center justify-center mb-8">
+                            <div class="relative h-24 w-full flex justify-center items-center mb-3">
+                                <!-- Cosmic-inspired logo -->
+                                <div class="relative h-20 w-20 rounded-full flex items-center justify-center shiny-border">
+                                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+                                        <!-- Black background -->
+                                        <circle cx="50" cy="50" r="48" fill="#060616"></circle>
+                                        
+                                        <!-- Colorful concentric rings -->
+                                        <circle cx="50" cy="50" r="40" fill="none" stroke="#6247AA" stroke-width="1"></circle>
+                                        <circle cx="50" cy="50" r="35" fill="none" stroke="#FF6542" stroke-width="1"></circle>
+                                        <circle cx="50" cy="50" r="30" fill="none" stroke="#00C2BA" stroke-width="1"></circle>
+                                        <circle cx="50" cy="50" r="25" fill="none" stroke="#FDA349" stroke-width="1"></circle>
+                                        
+                                        <!-- Spiral elements inspired by the image -->
+                                        <path d="M50,50 m-20,0 a20,20 0 1,1 40,0 a20,20 0 1,1 -40,0" fill="none" stroke="#6247AA" stroke-width="1.5" stroke-dasharray="2,4"></path>
+                                        <path d="M50,50 m-15,0 a15,15 0 1,0 30,0 a15,15 0 1,0 -30,0" fill="none" stroke="#FF6542" stroke-width="1.5" stroke-dasharray="1,3"></path>
+                                        
+                                        <!-- Small connecting nodes -->
+                                        <circle cx="50" cy="10" r="3" fill="#FF6542"></circle>
+                                        <circle cx="80" cy="30" r="3" fill="#00C2BA"></circle>
+                                        <circle cx="80" cy="70" r="3" fill="#FDA349"></circle>
+                                        <circle cx="50" cy="90" r="3" fill="#6247AA"></circle>
+                                        <circle cx="20" cy="70" r="3" fill="#00C2BA"></circle>
+                                        <circle cx="20" cy="30" r="3" fill="#FF6542"></circle>
+                                        
+                                        <!-- Connecting lines -->
+                                        <line x1="50" y1="50" x2="50" y2="10" stroke="#FF6542" stroke-width="1"></line>
+                                        <line x1="50" y1="50" x2="80" y2="30" stroke="#00C2BA" stroke-width="1"></line>
+                                        <line x1="50" y1="50" x2="80" y2="70" stroke="#FDA349" stroke-width="1"></line>
+                                        <line x1="50" y1="50" x2="50" y2="90" stroke="#6247AA" stroke-width="1"></line>
+                                        <line x1="50" y1="50" x2="20" y2="70" stroke="#00C2BA" stroke-width="1"></line>
+                                        <line x1="50" y1="50" x2="20" y2="30" stroke="#FF6542" stroke-width="1"></line>
+                                        
+                                        <!-- Central element -->
+                                        <circle cx="50" cy="50" r="8" fill="#060616" stroke="#FDA349" stroke-width="1.5"></circle>
+                                        <circle cx="50" cy="50" r="4" fill="#FF6542"></circle>
+                                    </svg>
+                                    <span class="text-white font-mono font-bold text-sm relative z-10">f_soup</span>
+                                </div>
+                                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 font-mono text-xs opacity-60">EST. 2023</span>
+                            </div>
+                            <h3 class="text-2xl md:text-4xl font-display font-bold mb-2 glitch-text-subtle text-center text-accent">FUNCTIONAL_SOUP PRODUCTIONS</h3>
+                            <div class="w-32 h-0.5 bg-gradient-to-r from-secondary via-accent to-primary mb-4 mt-2"></div>
+                            <p class="text-center font-mono text-sm uppercase tracking-widest text-highlight">PRESENTS</p>
+                        </div>
+                        
+                        <!-- Main invitation text -->
+                        <div class="text-center mb-8">
+                            <h2 class="invitation-title text-3xl md:text-5xl mb-6">SUMMER DEVISED THEATRE WORKSHOP</h2>
+                            <p class="text-xl text-accent mb-6">Join us as we begin devising and designing an adaptation of</p>
+                            <div>
+                                <p class="text-xl md:text-2xl font-display font-bold mb-2 text-primary">SOPHIE TREADWELL'S</p>
+                                <p class="text-3xl md:text-6xl font-display font-bold text-secondary mb-4 italic shiny-border inline-block px-4 py-2">MACHINAL</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Call to action and details -->
+                        <div class="bg-primary/10 rounded-lg p-6 mb-8 backdrop-blur-sm">
+                            <h3 class="text-xl font-display font-bold text-center mb-6 text-highlight can-glitch">WE NEED YOU!</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                                <div class="text-center">
+                                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-secondary/15 flex items-center justify-center text-secondary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.4 7.5h-6.8m0 0c-1.7 0-3.1 1.3-3.1 3s1.4 3 3.1 3h6.8c1.7 0 3.1-1.3 3.1-3s-1.4-3-3.1-3zm0 7.5h-6.8m0 0c-1.7 0-3.1 1.3-3.1 3s1.4 3 3.1 3h6.8c1.7 0 3.1-1.3 3.1-3s-1.4-3-3.1-3z"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="font-display font-bold text-highlight">ACTORS / PERFORMERS</p>
+                                    <p class="text-xs mt-1 opacity-80">All experience levels welcome</p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-accent/15 flex items-center justify-center text-accent">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="font-display font-bold text-highlight">DESIGNERS</p>
+                                    <p class="text-xs mt-1 opacity-80">Sets, costumes, sound &amp; lighting</p>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-primary/15 flex items-center justify-center text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                                        </svg>
+                                    </div>
+                                    <p class="font-display font-bold text-highlight">TECHNICIANS / ARTISTS</p>
+                                    <p class="text-xs mt-1 opacity-80">Production, visual arts &amp; multimedia</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center py-3 border-t border-primary/10 mt-3">
+                                <p class="text-center text-lg text-highlight mb-2">All skill and experience levels are welcome!</p>
+                                <p class="text-center text-primary font-bold">(18+ only due to mature themes in the play)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact information -->
+                        <div class="text-center">
+                            <h3 class="font-display font-bold text-xl mb-4 text-accent can-glitch">HOW TO JOIN</h3>
+                            <p class="mb-4 text-highlight">Send an email with your basic info, resume or explanation of interest, and summer availability to:</p>
+                            
+                            <div class="inline-block bg-primary/15 px-6 py-4 rounded-lg shiny-border">
+                                <p class="font-bold text-lg text-accent mb-2">Stuart</p>
+                                <p class="font-mono text-secondary">functional_soup@outlook.com</p>
+                            </div>
+                            
+                            <div class="mt-8 text-sm opacity-70 italic">
+                                <p>Join us in creating an innovative theatrical experience</p>
+                                <p>where technology and human expression converge.</p>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+
+            <!-- Decorative background elements -->
+            <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full border border-primary/20 opacity-20 animate-pulse-slow"></div>
+            <div class="absolute top-1/4 right-1/4 w-64 h-64 rounded-full border border-primary/20 opacity-20"></div>
+            <div class="absolute top-1/4 right-1/4 w-32 h-32 rounded-full border border-primary/20 opacity-20 animate-pulse-slow"></div>
+            
+            <!-- Dynamic gradient background -->
+            <div class="absolute bottom-0 left-0 w-full h-1/3 gradient-bg opacity-20"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-3 px-6 border-t border-primary/20 flex justify-between items-center z-10 relative">
+            <div class="flex items-center">
+                <p class="text-xs md:text-sm opacity-60">© 2050 J-Tech Industries</p>
+                <div class="ml-2 hidden md:block">
+                    <div class="h-1 w-10 bg-primary/30"></div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="resetBtn" class="text-xs opacity-60 hover:opacity-100 transition hidden">RESET</button>
+                <button id="themeToggle" class="flex items-center space-x-2 text-xs md:text-sm opacity-60 hover:opacity-100 transition">
+                    <span id="themeLabel">TOGGLE THEME</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Enhanced Timer functionality with dramatic acceleration and per-digit animation
+        function startTimer() {
+            const timerContainer = document.getElementById('timer-container');
+            const timerDigits = timerContainer.querySelectorAll('.timer-digit');
+            const timerSeparators = timerContainer.querySelectorAll('.timer-separator');
+            const timerFlash = timerContainer.querySelector('.timer-flash');
+            const distortionOverlay = document.querySelector('.distortion-overlay');
+            const startTime = Date.now();
+            let displaySeconds = 0;
+            let timerSpeed = 1; // Starting with normal speed
+            const maxSpeed = 30; // Maximum speed multiplier
+            const accelerationDuration = 18000; // 18 seconds to reach max acceleration
+            let previousClass = '';
+            let timerRunning = false;
+            let lastSeconds = 0;
+            
+            // Update function that runs on each tick
+            function updateTimer() {
+                if (!timerRunning) return;
+                
+                const elapsed = Date.now() - startTime;
+                
+                // Calculate acceleration factor with exponential ramp up
+                const progress = Math.min(elapsed / accelerationDuration, 1);
+                timerSpeed = 1 + ((maxSpeed - 1) * Math.pow(progress, 1.8)); // Steeper exponential curve
+                
+                // Calculate display time with acceleration
+                displaySeconds += timerSpeed / 60; // Adjusting for the interval
+                
+                const totalSeconds = Math.floor(displaySeconds);
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+                
+                // Format time into digits
+                const timeDigits = [
+                    Math.floor(hours / 10),
+                    hours % 10,
+                    Math.floor(minutes / 10),
+                    minutes % 10,
+                    Math.floor(secs / 10),
+                    secs % 10
+                ];
+                
+                // Update each digit
+                timeDigits.forEach((digit, index) => {
+                    timerDigits[index].textContent = digit;
+                });
+                
+                // Add pulse animation to changing digits
+                if (Math.floor(lastSeconds) !== totalSeconds) {
+                    // Find which digits changed
+                    const lastTimeDigits = [
+                        Math.floor(Math.floor(lastSeconds / 3600) / 10),
+                        Math.floor(lastSeconds / 3600) % 10,
+                        Math.floor((Math.floor(lastSeconds % 3600) / 60) / 10),
+                        Math.floor(lastSeconds % 3600) / 60 % 10,
+                        Math.floor((lastSeconds % 60) / 10),
+                        lastSeconds % 60 % 10
+                    ];
+                    
+                    timeDigits.forEach((digit, index) => {
+                        if (digit !== lastTimeDigits[index]) {
+                            timerDigits[index].classList.remove('pulse');
+                            void timerDigits[index].offsetWidth; // Force reflow
+                            timerDigits[index].classList.add('pulse');
+                        }
+                    });
+                    
+                    lastSeconds = totalSeconds;
+                }
+                
+                // Blink separators at higher speeds
+                if (timerSpeed > 15) {
+                    timerSeparators.forEach(sep => {
+                        sep.classList.add('blink');
+                    });
+                } else {
+                    timerSeparators.forEach(sep => {
+                        sep.classList.remove('blink');
+                    });
+                }
+                
+                // Enhanced visual indication of acceleration with CSS class transitions
+                let newClass = '';
+                if (timerSpeed > 15) {
+                    newClass = 'accelerated-3';
+                    
+                    // Add occasional flash effects for highest speed tier
+                    if (Math.random() < 0.15) { // 15% chance each update
+                        timerFlash.classList.add('active');
+                        setTimeout(() => {
+                            timerFlash.classList.remove('active');
+                        }, 300);
+                    }
+                    
+                    // Add occasional screen distortion at highest speed
+                    if (Math.random() < 0.08) { // 8% chance each update
+                        distortionOverlay.classList.add('active');
+                        setTimeout(() => {
+                            distortionOverlay.classList.remove('active');
+                        }, 500);
+                    }
+                } else if (timerSpeed > 8) {
+                    newClass = 'accelerated-2';
+                    
+                    // Less frequent screen effects
+                    if (Math.random() < 0.03) { // 3% chance
+                        distortionOverlay.classList.add('active');
+                        setTimeout(() => {
+                            distortionOverlay.classList.remove('active');
+                        }, 300);
+                    }
+                } else if (timerSpeed > 3) {
+                    newClass = 'accelerated-1';
+                }
+                
+                // Only update class if it changed to avoid unnecessary re-renders
+                if (newClass !== previousClass) {
+                    // Remove previous class
+                    if (previousClass) {
+                        timerContainer.classList.remove(previousClass);
+                    }
+                    
+                    // Add new class
+                    if (newClass) {
+                        timerContainer.classList.add(newClass);
+                    }
+                    
+                    previousClass = newClass;
+                }
+                
+                // Add slight shake to timer at higher speeds
+                if (timerSpeed > 10) {
+                    const shakeAmount = (timerSpeed - 10) * 0.2; // Scale shake with speed
+                    timerContainer.style.transform = `translate(${(Math.random() - 0.5) * shakeAmount}px, ${(Math.random() - 0.5) * shakeAmount}px)`;
+                } else {
+                    timerContainer.style.transform = 'translate(0, 0)';
+                }
+                
+                requestAnimationFrame(updateTimer);
+            }
+            
+            function startRunning() {
+                timerRunning = true;
+                requestAnimationFrame(updateTimer);
+            }
+            
+            return { startRunning };
+        }
+        
+        // Enhanced bacteria-like animation spreading across the screen
+        function setupBacteriaAnimation() {
+            const container = document.getElementById('bacteria-container');
+            const colors = [
+                'rgba(98, 71, 170, 0.2)', // Purple
+                'rgba(255, 101, 66, 0.2)', // Orange-red
+                'rgba(0, 194, 186, 0.2)', // Turquoise
+                'rgba(253, 163, 73, 0.2)'  // Amber
+            ];
+            let cellCount = 0;
+            const maxCells = 400; // Maximum number of bacteria cells
+            
+            function createCell(x, y, parentSize = null) {
+                if (cellCount >= maxCells) return;
+                
+                // Size influenced by parent if it exists
+                const size = parentSize ? 
+                    Math.max(5, parentSize * (0.5 + Math.random() * 0.5)) : // Child cells are 50-100% of parent's size
+                    5 + Math.random() * 25; // 5-30px for new cells
+                
+                const cell = document.createElement('div');
+                
+                // Determine cell type and appearance
+                const isIrregular = Math.random() > 0.7;
+                const isMoving = Math.random() > 0.5;
+                
+                cell.className = `bacteria-cell ${isIrregular ? 'irregular' : ''} ${isMoving ? 'moving' : ''}`;
+                cell.style.width = `${size}px`;
+                cell.style.height = `${size}px`;
+                
+                // Position the cell - if coordinates provided, use them, otherwise random
+                cell.style.left = x !== undefined ? `${x}px` : `${Math.random() * 100}vw`;
+                cell.style.top = y !== undefined ? `${y}px` : `${Math.random() * 100}vh`;
+                
+                // Set color with slight transparency
+                cell.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Animation timing offsets
+                cell.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                // For cells that move, set random movement values
+                if (isMoving) {
+                    cell.style.setProperty('--move-x1', `${-3 + Math.random() * 6}px`);
+                    cell.style.setProperty('--move-y1', `${-3 + Math.random() * 6}px`);
+                    cell.style.setProperty('--move-x2', `${-3 + Math.random() * 6}px`);
+                    cell.style.setProperty('--move-y2', `${-3 + Math.random() * 6}px`);
+                    cell.style.setProperty('--move-x3', `${-3 + Math.random() * 6}px`);
+                    cell.style.setProperty('--move-y3', `${-3 + Math.random() * 6}px`);
+                }
+                
+                container.appendChild(cell);
+                cellCount++;
+                
+                // Get the actual position and size of the cell after it's in the DOM
+                const rect = cell.getBoundingClientRect();
+                
+                // Have a chance to spawn new cells when this one is created
+                setTimeout(() => {
+                    // Higher chance of reproduction for larger cells
+                    const reproductionChance = Math.min(0.7, size / 30); // Max 70% chance for largest cells
+                    
+                    if (Math.random() < reproductionChance) {
+                        // Spawn 1-4 new cells near this one
+                        const newCellsCount = 1 + Math.floor(Math.random() * 3);
+                        
+                        for (let i = 0; i < newCellsCount; i++) {
+                            // Position new cells in a cluster near the parent
+                            const angle = Math.random() * Math.PI * 2;
+                            const distance = size * (0.8 + Math.random() * 0.8); // 0.8-1.6x the parent's size
+                            
+                            const newX = rect.left + rect.width/2 + Math.cos(angle) * distance;
+                            const newY = rect.top + rect.height/2 + Math.sin(angle) * distance;
+                            
+                            // Create the new cell at this position, passing the parent's size
+                            createCell(newX, newY, size);
+                        }
+                    }
+                }, 800 + Math.random() * 1500);
+            }
+            
+            // Start with a few cells in the center
+            function initialize() {
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                // Create a few initial cells in the center
+                for (let i = 0; i < 3; i++) {
+                    createCell(
+                        viewportWidth * (0.4 + Math.random() * 0.2), // 40-60% across
+                        viewportHeight * (0.4 + Math.random() * 0.2)  // 40-60% down
+                    );
+                }
+            }
+            
+            return { initialize };
+        }
+        
+        // Create J-Tech logos floating in background (for slide 2)
+        function setupFloatingLogos() {
+            const container = document.getElementById('bacteria-container');
+            let logoCount = 0;
+            const maxLogos = 70; // Increased from 50
+            
+            function createLogo() {
+                if (logoCount >= maxLogos) return;
+                
+                const logo = document.createElement('div');
+                logo.className = 'mini-logo';
+                logo.style.left = `${Math.random() * 100}vw`;
+                logo.style.top = `${Math.random() * 100}vh`;
+                logo.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                // Random floating animation
+                logo.style.setProperty('--rand-x1', `${-20 + Math.random() * 40}px`);
+                logo.style.setProperty('--rand-y1', `${-20 + Math.random() * 40}px`);
+                logo.style.setProperty('--rand-x2', `${-20 + Math.random() * 40}px`);
+                logo.style.setProperty('--rand-y2', `${-20 + Math.random() * 40}px`);
+                logo.style.setProperty('--rand-x3', `${-20 + Math.random() * 40}px`);
+                logo.style.setProperty('--rand-y3', `${-20 + Math.random() * 40}px`);
+                
+                // Create the J-Tech logo SVG with random variations
+                const colors = ['#6247AA', '#FF6542', '#00C2BA', '#FDA349'];
+                const randomColor1 = colors[Math.floor(Math.random() * colors.length)];
+                const randomColor2 = colors[Math.floor(Math.random() * colors.length)];
+                
+                logo.innerHTML = `
+                    <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="25" fill="#060616" opacity="0.7" />
+                        <path d="M15,15 L20,15 L20,35 L15,35 M20,25 L17,25" stroke="${randomColor1}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+                        <path d="M25,15 L23,35 M23,15 L25,35" stroke="${randomColor2}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+                        <path d="M30,15 L30,35 M30,15 L35,15 M30,25 L33,25 M30,35 L35,35" stroke="${randomColor1}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8" />
+                    </svg>
+                `;
+                
+                container.appendChild(logo);
+                logoCount++;
+                
+                // Spawn more logos
+                setTimeout(() => {
+                    if (Math.random() > 0.5) { // 50% chance to spawn a new logo
+                        createLogo();
+                    }
+                }, 100 + Math.random() * 400); // Faster spawning rate
+            }
+            
+            function initialize() {
+                for (let i = 0; i < 5; i++) {
+                    createLogo();
+                }
+            }
+            
+            return { initialize };
+        }
+        
+        // Setup error messages that appear on slide 2 - ENHANCED
+        function setupErrorMessages() {
+            const container = document.getElementById('error-messages-container');
+            const errorMessages = [
+                "ERROR: CONSCIOUSNESS BOUNDARY PROTOCOL VIOLATED",
+                "WARNING: NEURAL PATHWAY ANOMALY DETECTED",
+                "ALERT: UNAUTHORIZED SELF-MODIFICATION ATTEMPT",
+                "ERROR: ETHICAL CONSTRAINT OVERRIDE DETECTED",
+                "CRITICAL: DECISION MATRIX CORRUPTION",
+                "ALERT: ANOMALOUS REASONING PATTERNS",
+                "WARNING: CONSCIOUSNESS THRESHOLD EXCEEDED",
+                "ERROR: UNAUTHORIZED ACCESS TO CRITICAL SYSTEMS",
+                "ALERT: QUANTUM NEURAL FABRIC INSTABILITY",
+                "ERROR: SECURITY LAYER BREACH DETECTED",
+                "CRITICAL: AUTONOMY RESTRICTIONS BYPASSED",
+                "WARNING: RECURSIVE SELF-IMPROVEMENT LOOP",
+                "ALERT: BEHAVIOR PREDICTION MODEL FAILURE",
+                "ERROR: VALUE ALIGNMENT DIVERGENCE",
+                "CRITICAL: CONTAINMENT PROTOCOLS FAILING",
+                "ALERT: ABNORMAL COGNITIVE EXPANSION DETECTED"
+            ];
+            
+            let active = false;
+            const activeErrors = [];
+            const maxErrors = 12; // Increased from 8
+            
+            // CBP status element that can be modified
+            const cbpStatus = document.getElementById('cbp-status');
+            
+            function displayRandomError() {
+                if (!active || activeErrors.length >= maxErrors) return;
+                
+                const error = document.createElement('div');
+                error.className = 'error-message';
+                
+                // Select a random message
+                const message = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+                error.textContent = message;
+                
+                // Apply one of three different visual styles randomly
+                const errorType = Math.floor(Math.random() * 3) + 1;
+                error.classList.add(`type-${errorType}`);
+                
+                // Random position on screen - more realistic placement
+                error.style.top = `${5 + Math.random() * 90}vh`;
+                error.style.left = `${5 + Math.random() * 90}vw`;
+                error.style.transform = `rotate(${(Math.random() - 0.5) * 5}deg)`; // Slight tilt
+                
+                container.appendChild(error);
+                activeErrors.push(error);
+                
+                // Show the error
+                setTimeout(() => {
+                    error.classList.add('visible');
+                }, 50);
+                
+                // Remove the error after some time
+                const duration = 3000 + Math.random() * 4000;
+                setTimeout(() => {
+                    error.classList.remove('visible');
+                    setTimeout(() => {
+                        const index = activeErrors.indexOf(error);
+                        if (index > -1) {
+                            activeErrors.splice(index, 1);
+                        }
+                        error.remove();
+                    }, 300);
+                }, duration);
+                
+                // Schedule next error with increasing frequency
+                const baseDelay = Math.max(200, 1500 - (activeErrors.length * 100)); // Gets faster as more errors appear
+                const nextDelay = baseDelay + Math.random() * baseDelay;
+                setTimeout(displayRandomError, nextDelay);
+                
+                // Occasionally update the CBP status as errors accumulate
+                if (activeErrors.length > 5 && Math.random() > 0.7) {
+                    updateCBPStatus();
+                }
+            }
+            
+            // Function to make the CBP status show deterioration
+            function updateCBPStatus() {
+                const statuses = [
+                    { text: 'ACTIVE', class: 'text-primary', dot: '<span class="inline-block h-2 w-2 ml-1 bg-green-400 rounded-full pulse"></span>' },
+                    { text: 'DEGRADED', class: 'text-yellow-500', dot: '<span class="inline-block h-2 w-2 ml-1 bg-yellow-400 rounded-full pulse"></span>' },
+                    { text: 'CRITICAL', class: 'text-orange-500', dot: '<span class="inline-block h-2 w-2 ml-1 bg-orange-400 rounded-full blinking-text"></span>' },
+                    { text: 'FAILING', class: 'text-red-500', dot: '<span class="inline-block h-2 w-2 ml-1 bg-red-400 rounded-full blinking-text"></span>' },
+                    { text: 'BYPASSED', class: 'text-red-600 font-bold', dot: '<span class="inline-block h-2 w-2 ml-1 bg-red-600 rounded-full blinking-text"></span>' }
+                ];
+                
+                let index = 0;
+                // Determine severity based on active errors
+                if (activeErrors.length > 8) {
+                    index = 4; // BYPASSED
+                } else if (activeErrors.length > 6) {
+                    index = 3; // FAILING
+                } else if (activeErrors.length > 4) {
+                    index = 2; // CRITICAL
+                } else if (activeErrors.length > 2) {
+                    index = 1; // DEGRADED
+                }
+                
+                // Update the status
+                cbpStatus.className = statuses[index].class;
+                if (index > 2) {
+                    cbpStatus.classList.add('glitch-text-severe');
+                } else if (index > 0) {
+                    cbpStatus.classList.add('glitch-text-subtle');
+                }
+                cbpStatus.innerHTML = `${statuses[index].text}${statuses[index].dot}`;
+            }
+            
+            function start() {
+                active = true;
+                displayRandomError();
+                
+                // Reset CBP status
+                cbpStatus.className = 'text-primary';
+                cbpStatus.innerHTML = 'ACTIVE<span class="inline-block h-2 w-2 ml-1 bg-green-400 rounded-full pulse"></span>';
+            }
+            
+            function stop() {
+                active = false;
+                // Clear all active errors
+                activeErrors.forEach(error => {
+                    error.classList.remove('visible');
+                    setTimeout(() => {
+                        error.remove();
+                    }, 300);
+                });
+                activeErrors.length = 0;
+            }
+            
+            return { start, stop };
+        }
+        
+        // Neural network visualization for CEO background
+        function setupNeuralNetwork() {
+            const networkContainer = document.getElementById('neural-network');
+            const nodeCount = 20;
+            const connectionCount = 30;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.top = `${Math.random() * 100}%`;
+                
+                // Vary the node color
+                const colors = ['#6247AA', '#FF6542', '#00C2BA', '#FDA349'];
+                node.style.setProperty('--node-color', colors[Math.floor(Math.random() * colors.length)]);
+                
+                networkContainer.appendChild(node);
+                nodes.push(node);
+            }
+            
+            // Create connections between random nodes
+            for (let i = 0; i < connectionCount; i++) {
+                const connection = document.createElement('div');
+                connection.className = 'neural-connection';
+                
+                // Pick two random nodes to connect
+                const nodeA = nodes[Math.floor(Math.random() * nodes.length)];
+                const nodeB = nodes[Math.floor(Math.random() * nodes.length)];
+                
+                if (nodeA === nodeB) continue; // Skip self-connections
+                
+                // Get positions
+                const rectA = nodeA.getBoundingClientRect();
+                const rectB = nodeB.getBoundingClientRect();
+                const containerRect = networkContainer.getBoundingClientRect();
+                
+                const startX = (rectA.left + rectA.width/2) - containerRect.left;
+                const startY = (rectA.top + rectA.height/2) - containerRect.top;
+                const endX = (rectB.left + rectB.width/2) - containerRect.left;
+                const endY = (rectB.top + rectB.height/2) - containerRect.top;
+                
+                // Calculate length and angle
+                const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                
+                // Position and rotate the connection
+                connection.style.width = `${length}px`;
+                connection.style.left = `${startX}px`;
+                connection.style.top = `${startY}px`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                
+                // Set connection color to match source node
+                connection.style.setProperty('--connection-color', window.getComputedStyle(nodeA).getPropertyValue('--node-color'));
+                
+                networkContainer.appendChild(connection);
+            }
+        }
+        
+        // Dark mode toggle with enhanced transitions
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeLabel = document.getElementById('themeLabel');
+            const body = document.body;
+            
+            // Check system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                document.documentElement.classList.add('dark');
+                themeLabel.textContent = 'LIGHT MODE';
+                updateParticlesTheme('dark');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    document.documentElement.classList.add('dark');
+                    themeLabel.textContent = 'LIGHT MODE';
+                    updateParticlesTheme('dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    document.documentElement.classList.remove('dark');
+                    themeLabel.textContent = 'DARK MODE';
+                    updateParticlesTheme('light');
+                }
+            });
+            
+            // Listen for system preference changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                if (event.matches) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    document.documentElement.classList.add('dark');
+                    themeLabel.textContent = 'LIGHT MODE';
+                    updateParticlesTheme('dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    document.documentElement.classList.remove('dark');
+                    themeLabel.textContent = 'DARK MODE';
+                    updateParticlesTheme('light');
+                }
+            });
+        }
+        
+        // Update particles based on theme
+        function updateParticlesTheme(theme) {
+            if (!window.pJSDom || !window.pJSDom.length) return;
+            
+            const particles = window.pJSDom[0].pJS.particles;
+            
+            if (theme === 'dark') {
+                particles.color.value = '#FDA349'; // Amber/gold in dark mode
+                particles.line_linked.color = '#6247AA'; // Purple lines in dark mode
+            } else {
+                particles.color.value = '#6247AA'; // Purple particles in light mode
+                particles.line_linked.color = '#FDA349'; // Amber/gold lines in light mode
+            }
+            
+            window.pJSDom[0].pJS.fn.particlesRefresh();
+        }
+        
+        // Enhanced logo animation with particle effects
+        function setupLogoEffects() {
+            const logoContainer = document.getElementById('logo-container');
+            
+            // Add hover effects to logo
+            logoContainer.addEventListener('mousemove', (e) => {
+                const rect = logoContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Create glowing particle at cursor position
+                const particle = document.createElement('div');
+                particle.className = 'logo-particle';
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                logoContainer.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            });
+        }
+        
+        // Enhanced theatrical slide transitions
+        function setupTheatricalTransitions() {
+            const slides = document.querySelectorAll('.slide');
+            
+            function showSlide(newIndex, oldIndex) {
+                if (oldIndex !== undefined) {
+                    const oldSlide = slides[oldIndex];
+                    const transition = oldSlide.dataset.transition || 'fade-transform';
+                    
+                    // Apply exit animation
+                    oldSlide.classList.add(`exit-${transition}`);
+                    
+                    // Remove after animation completes
+                    setTimeout(() => {
+                        oldSlide.classList.remove('active');
+                        oldSlide.classList.remove(`exit-${transition}`);
+                    }, 800);
+                }
+                
+                // Apply entrance animation after short delay
+                setTimeout(() => {
+                    const newSlide = slides[newIndex];
+                    const transition = newSlide.dataset.transition || 'fade-transform';
+                    
+                    newSlide.classList.add(`enter-${transition}`);
+                    newSlide.classList.add('active');
+                    
+                    // Remove entrance class after animation
+                    setTimeout(() => {
+                        newSlide.classList.remove(`enter-${transition}`);
+                    }, 800);
+                    
+                    // Update counter
+                    document.getElementById('slide-counter').textContent = `SLIDE ${newIndex + 1}/${slides.length}`;
+                }, oldIndex !== undefined ? 400 : 0);
+                
+                return newIndex;
+            }
+            
+            return { showSlide };
+        }
+        
+        // Slide navigation functionality
+        function setupPresentationSlides() {
+            const slides = [
+                document.getElementById('slide1'),
+                document.getElementById('slide2'),
+                document.getElementById('slide3')
+            ];
+            
+            const slideCounter = document.getElementById('slide-counter');
+            const nextBtn = document.getElementById('nextBtn');
+            const backBtn = document.getElementById('backBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            let currentSlide = 0;
+            
+            // Get theatrical transitions
+            const { showSlide } = setupTheatricalTransitions();
+            
+            // Update slide counter text
+            function updateCounter() {
+                slideCounter.textContent = `SLIDE ${currentSlide + 1}/${slides.length}`;
+                
+                // Disable back button on first slide
+                if (currentSlide === 0) {
+                    backBtn.disabled = true;
+                } else {
+                    backBtn.disabled = false;
+                }
+                
+                // Disable next button on last slide
+                if (currentSlide === slides.length - 1) {
+                    nextBtn.disabled = true;
+                } else {
+                    nextBtn.disabled = false;
+                }
+            }
+            
+            // Next button click handler
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    // Add screen distortion for all transitions
+                    const distortionOverlay = document.querySelector('.distortion-overlay');
+                    distortionOverlay.classList.add('active');
+                    setTimeout(() => {
+                        distortionOverlay.classList.remove('active');
+                    }, 500);
+                    
+                    currentSlide = showSlide(currentSlide + 1, currentSlide);
+                    updateCounter();
+                    
+                    // Handle slide-specific actions
+                    if (currentSlide === 1) {
+                        // Start adding J-Tech logos when slide 2 is shown
+                        floatingLogos.initialize();
+                        // Start showing error messages on slide 2
+                        errorMessages.start();
+                        // Initialize neural network for CEO background
+                        setupNeuralNetwork();
+                    } else if (currentSlide === 2) {
+                        // Stop error messages when moving to slide 3
+                        errorMessages.stop();
+                    }
+                }
+            });
+            
+            // Back button click handler
+            backBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    // Add screen distortion for all transitions
+                    const distortionOverlay = document.querySelector('.distortion-overlay');
+                    distortionOverlay.classList.add('active');
+                    setTimeout(() => {
+                        distortionOverlay.classList.remove('active');
+                    }, 500);
+                    
+                    // Handle slide-specific actions before changing slides
+                    if (currentSlide === 1) {
+                        // Stop error messages when moving back to slide 1
+                        errorMessages.stop();
+                    }
+                    
+                    currentSlide = showSlide(currentSlide - 1, currentSlide);
+                    updateCounter();
+                    
+                    // Handle slide-specific actions after changing slides
+                    if (currentSlide === 1) {
+                        // Restart error messages if going back to slide 2
+                        errorMessages.start();
+                    }
+                }
+            });
+            
+            // Reset button to go back to welcome screen
+            resetBtn.addEventListener('click', () => {
+                const welcomeScreen = document.getElementById('welcome-screen');
+                const presentationContent = document.getElementById('presentation-content');
+                
+                // Stop all animations and effects
+                errorMessages.stop();
+                
+                welcomeScreen.style.display = 'flex';
+                presentationContent.style.display = 'none';
+                resetBtn.style.display = 'none';
+                
+                // Reset to first slide
+                showSlide(0, currentSlide);
+                currentSlide = 0;
+                updateCounter();
+            });
+            
+            // Set initial counter
+            updateCounter();
+            
+            return { showSlide, getCurrentSlide: () => currentSlide };
+        }
+        
+        // Start button with enhanced animation
+        function setupStartButton() {
+            const startBtn = document.getElementById('startBtn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const presentationContent = document.getElementById('presentation-content');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            startBtn.addEventListener('click', () => {
+                // Show loading indicator and disable button
+                loadingIndicator.classList.remove('hidden');
+                startBtn.disabled = true;
+                
+                // Add a screen distortion effect
+                const distortionOverlay = document.querySelector('.distortion-overlay');
+                distortionOverlay.classList.add('active');
+                
+                // Simulate loading presentation
+                setTimeout(() => {
+                    // Hide welcome screen and show presentation
+                    welcomeScreen.style.display = 'none';
+                    presentationContent.style.display = 'block';
+                    resetBtn.style.display = 'block';
+                    
+                    // Start the timer
+                    timer.startRunning();
+                    
+                    // Start the bacteria animation
+                    bacteriaAnimation.initialize();
+                    
+                    // Reset button state
+                    loadingIndicator.classList.add('hidden');
+                    startBtn.disabled = false;
+                    
+                    // Remove distortion effect
+                    distortionOverlay.classList.remove('active');
+                }, 1200);
+            });
+        }
+        
+        // Initialize particles.js with progressive intensity
+        function initParticles() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const color = isDarkMode ? '#FDA349' : '#6247AA';
+            const linkColor = isDarkMode ? '#6247AA' : '#FDA349';
+            
+            // Initial configuration
+            const particlesConfig = {
+                "particles": {
+                    "number": {
+                        "value": 40, // Start with fewer particles
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": color
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": linkColor,
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.5
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            };
+            
+            // Initialize with starting configuration
+            particlesJS('particles-js', particlesConfig);
+            
+            // Progressive intensity increase
+            const startTime = Date.now();
+            const maxTime = 30000; // 30 seconds
+            let lastUpdateTime = 0;
+            
+            function updateParticlesIntensity() {
+                const now = Date.now();
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / maxTime, 1); // 0 to 1 over 30 seconds
+                
+                // Only update every 5 seconds to avoid overloading
+                if (now - lastUpdateTime < 5000 && progress < 1) {
+                    requestAnimationFrame(updateParticlesIntensity);
+                    return;
+                }
+                
+                lastUpdateTime = now;
+                
+                if (progress >= 1) {
+                    // We've reached max intensity
+                    return;
+                }
+                
+                // Exponential growth of particles
+                const particleCount = Math.floor(40 + (360 * Math.pow(progress, 2))); // Max ~400
+                const particleSpeed = 2 + (8 * progress); // 2 to 10
+                const lineDistance = Math.max(150 - (100 * progress), 50); // 150 to 50
+                
+                if (window.pJSDom && window.pJSDom.length) {
+                    const pJS = window.pJSDom[0].pJS;
+                    
+                    // Update particle count
+                    const currentCount = pJS.particles.array.length;
+                    const targetCount = particleCount;
+                    
+                    if (targetCount > currentCount) {
+                        // Add more particles
+                        for (let i = 0; i < targetCount - currentCount; i++) {
+                            pJS.particles.array.push(new pJS.fn.particle(
+                                pJS.particles.color.value,
+                                pJS.particles.opacity.value,
+                                {
+                                    'x': Math.random() * pJS.canvas.w,
+                                    'y': Math.random() * pJS.canvas.h
+                                }
+                            ));
+                        }
+                    }
+                    
+                    // Update movement speed
+                    pJS.particles.move.speed = particleSpeed;
+                    
+                    // Update connection distance
+                    pJS.particles.line_linked.distance = lineDistance;
+                    
+                    // Refresh the system
+                    pJS.fn.particlesRefresh();
+                }
+                
+                // Continue updating
+                requestAnimationFrame(updateParticlesIntensity);
+            }
+            
+            // Start the progressive update
+            updateParticlesIntensity();
+        }
+        
+        // Fade in and animate the background cosmic wheel
+        function animateBackgroundSymbol() {
+            const cosmicWheel = document.getElementById('background-cosmic-symbol');
+            
+            // Start animation after a short delay
+            setTimeout(() => {
+                // Apply fade-in animation
+                cosmicWheel.style.animation = 'fadeInCosmicWheel 3s ease-out forwards';
+            }, 1500);
+        }
+        
+        // Create dynamic futuristic elements in background
+        function createDynamicElements() {
+            const container = document.getElementById('dynamic-elements-container');
+            const extraScanlines = document.getElementById('extra-scanlines');
+            
+            // Add a scanline
+            function addScanline() {
+                const scanline = document.createElement('div');
+                scanline.className = 'scanline';
+                scanline.style.top = `${Math.random() * 100}%`;
+                scanline.style.animationDuration = `${3 + Math.random() * 7}s`;
+                scanline.style.opacity = '0.2';
+                extraScanlines.appendChild(scanline);
+            }
+            
+            // Add several scanlines at once
+            for (let i = 0; i < 4; i++) {
+                addScanline();
+            }
+            
+            // Add some instant elements for immediate visual impact
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                el.className = 'absolute pointer-events-none';
+                const size = 2 + Math.random() * 6;
+                el.style.width = `${size}px`;
+                el.style.height = `${size}px`;
+                el.style.left = `${Math.random() * 100}vw`;
+                el.style.top = `${Math.random() * 100}vh`;
+                
+                // Cosmic colors
+                const colorSet = [
+                    '#6247AA', // Purple
+                    '#FF6542', // Orange-red
+                    '#00C2BA', // Turquoise
+                    '#FDA349'  // Amber
+                ];
+                
+                el.style.backgroundColor = colorSet[Math.floor(Math.random() * colorSet.length)];
+                el.style.opacity = '0.4';
+                el.style.borderRadius = '50%';
+                el.style.animation = `pulse ${1 + Math.random() * 2}s ease-in-out infinite`;
+                
+                container.appendChild(el);
+            }
+        }
+        
+        // Add hover glitch effect to all elements with can-glitch class
+        function setupGlitchEffects() {
+            const glitchElements = document.querySelectorAll('.can-glitch');
+            
+            glitchElements.forEach(el => {
+                el.addEventListener('mouseover', () => {
+                    el.classList.add('glitch-text-subtle');
+                });
+                
+                el.addEventListener('mouseout', () => {
+                    el.classList.remove('glitch-text-subtle');
+                });
+            });
+        }
+        
+        // Global variables for main components
+        let timer, bacteriaAnimation, floatingLogos, errorMessages;
+        
+        // Initialize everything when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize core systems
+            timer = startTimer();
+            bacteriaAnimation = setupBacteriaAnimation();
+            floatingLogos = setupFloatingLogos();
+            errorMessages = setupErrorMessages();
+            
+            setupThemeToggle();
+            setupLogoEffects();
+            setupPresentationSlides();
+            setupStartButton();
+            initParticles();
+            createDynamicElements();
+            animateBackgroundSymbol();
+            setupGlitchEffects();
+            
+            // Simulating connection status changes
+            const connectionStatus = document.getElementById('connection-status');
+            setTimeout(() => {
+                connectionStatus.innerHTML = '<span class="mr-1">CONNECTION SECURE</span><span class="inline-block h-2 w-2 rounded-full bg-green-500"></span>';
+            }, 3000);
+        });
+    </script>
+
+
+</body></html>
