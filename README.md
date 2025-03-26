@@ -1,4 +1,4 @@
-# **functionalsoup** is
+# **functionalsoup** is 18+ Only NSFW
 ## 1. Ai and Development Hobbiest:
 **Check out the Prompt Library for Prompts, Games, Templates, and Jailbreaks.** 
 ## 2. theDirector - Character Bots 
